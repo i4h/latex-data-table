@@ -1,0 +1,21 @@
+{
+  "name": "latex-data-table",
+  "version": "1.0.0",
+  "description": "Make latex tables",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "author": "Ingmar Vierhaus",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "chai-arrays": "0.0.1",
+    "debug": "^2.6.3",
+    "extend": "^3.0.0",
+    "fs-extra": "^2.0.0",
+    "mocha": "^3.2.0",
+    "sinon": "^2.0.0",
+    "sinon-test": "^1.0.1"
+  }
+}
