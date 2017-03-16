@@ -17,13 +17,15 @@ var header = {
         [
             {
                 content: 'Name',
+                colWidth: 10,
                 spec: "l"},
             {
                 content: 'Power',
+
                 spec: "r",
                 decimalScaling: "1",
                 units: "Gazillions",
-                formatter: {decimals: 0}
+                formatter: {decimals: 0},
             },
             {
                 content: 'Loading time',

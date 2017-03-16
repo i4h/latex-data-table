@@ -1,6 +1,6 @@
-  Name                               Power [10 Gazillions]              Loading time [10^{-1} Seconds]     
-  ---------------------------------------------------------------------------------------------------------
-  vim                                2                                  2.0                                 #first line comment
-  emacs                              1000                               1.2e+4                              #second line comment
+  Name      Power [10 Gazillions]              Loading time [10^{-1} Seconds]     
+  --------------------------------------------------------------------------------
+  vim       2                                  2.0                                 #first line comment
+  emacs     1000                               1.2e+4                              #second line comment
 
 
