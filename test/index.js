@@ -158,7 +158,7 @@ describe("Test main call on a ", function() {
                 cells:
                     [
                         {
-                            content: 'a',
+                            content: 'Name',
                             spec: "l"},
                         {
                             content: 'awesomeness',
@@ -189,11 +189,68 @@ describe("Test main call on a ", function() {
             ];
 
             var latex = latexTable(body, header, options);
+            console.log(latex);
             var file = __dirname + "/latex/showcase.tex";
             if (reWriteExpected)
                 fs.writeFileSync(file, latex, {encoding: "utf8"});
             var expectedLatex = fs.readFileSync(file, "utf8");
             expect(latex).to.be.equal(expectedLatex);
+            done();
+        }));
+
+        it("with ascii style", sinon.test(function(done) {
+
+            var options = {
+                style: "ascii",
+                label: "tab:awesomeness",
+                caption: "Comparison of text-editor awesomeness",
+            };
+
+            var header = {
+                comment: "header comment" ,
+                cells:
+                    [
+                        {
+                            content: 'a',
+                            spec: "l",
+                            colWidth: 8,
+                        },
+
+                        {
+                            content: 'awesomeness',
+                            spec: "l",
+                            decimalScaling: "1",
+                            units: "Gazillions",
+                            formatter: {decimals: 2},
+                        },
+                        {
+                            content: 'awesomeness2',
+                            spec: "l",
+                            decimalScaling: "2",
+                            units: "Gazillions",
+                            formatter: {precision: 3}
+                        },
+                    ]
+            };
+
+            var body = [
+                {
+                    comment: "first line comment",
+                    cells: ['vim', '300', 300]
+                },
+                {
+                    comment: "second line comment",
+                    cells: ['emacs', '10000', 10000]
+                },
+            ];
+
+            var ascii = latexTable(body, header, options);
+            var file = __dirname + "/latex/showcase_ascii.tex";
+            if (reWriteExpected)
+                fs.writeFileSync(file, ascii, {encoding: "utf8"});
+            console.log(ascii);
+            var expectedAscii = fs.readFileSync(file, "utf8");
+            expect(ascii).to.be.equal(expectedAscii);
             done();
         }));
     });
