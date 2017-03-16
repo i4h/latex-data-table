@@ -33,12 +33,12 @@ npm install i4h/latex-data-table
 Quickly generate a table by specifying an array with the header contents
 and a matrix with the body contents:
 ````
-var latexTable = require('../lib/index');
+var LatexTable = require('latex-data-table');
 
 var header = ["Column1", "Column2"];
 var body = [[1,"a"],[2,"b"]];
 /* Generate latex code */
-var latex = latexTable(body, header);
+var latex = LatexTable(body, header);
 ````
 The generated table will look like this:
 <img alt="Simple default table" src="examples/simple_latex.png" style="width: 10em;" />
@@ -52,6 +52,8 @@ The example in `examples/showcase_latex` demonstrates how to actually show and f
 Options for individual columns are defined in the header:
 
 ````
+var LatexTable = require('latex-data-table');
+
 var options = {
 	style = 'booktabs'
 	caption = '...',
@@ -94,11 +96,13 @@ var body = [
 ];
 
 /* Generate latex code */
-var result = latexTable(body, header);
+var result = LatexTable(body, header);
 
 ````
 
-The generated table in  default and booktab styling will look like this:
+The generated table in  default and booktab styling will look like this:  
+
+
 <img alt="Simple default table" src="examples/showcase_latex.png" style="width: 10em;" />
 
 To output your table to the console for a preview, use the ascii style. Column width can be
