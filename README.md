@@ -17,6 +17,15 @@ from within a node application.
    - A latex-comment can be added to each table row. Body comments are added  after the line, a header comment is
    added above the header line.
    
+   
+## Installation
+
+Install directly from this repository:
+
+````
+npm install i4h/latex-data-table
+````
+      
 ## Examples
 
 ### A Simple Table
