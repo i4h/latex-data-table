@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Make latex tables",
   "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/i4h/latex-data-table"
+  },
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
