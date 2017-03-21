@@ -8,7 +8,7 @@ from within a node application.
 - Different table styles:
     - `booktabs`: Pretty booktabs table
 	- `default`: Standard Latex table using double lines
-	- `ascii`: Text table with the clui package. Useful to get a preview of your table before compiling it to LaTeX.
+	- `ascii`: Text table with the clui package. Useful to get a preview of your table before compiling it to LaTeX. Ascii table columns can be configured to do simple test-wrapping.
 - __Number formatting__: 
    - You can specify units and decimal scalings for each table column. Column values are then scaled automatically and units and scaling factors are shown in the table header.
    - Format numbers in the table body by precision or number of decimal places
