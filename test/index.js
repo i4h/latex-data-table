@@ -17,7 +17,7 @@ var fs = require('fs-extra');
 var latexTable = require('../lib/index');
 
 /* Set this to true to rewrite all the expected latex output */
-var reWriteExpected = false;
+var reWriteExpected = true;
 
 sinon.test = sinonTest.configureTest(sinon);
 
@@ -77,6 +77,7 @@ describe("Test main call on a ", function() {
         it("default style table", sinon.test(function(done) {
 
             var latex = latexTable(simpleBody, null, {style: "default"});
+            console.log(latex);
             var file = __dirname + "/latex/body_only_default.tex";
             if (reWriteExpected)
                 fs.writeFileSync(file, latex, {encoding: "utf8"});
@@ -139,6 +140,26 @@ describe("Test main call on a ", function() {
                 fs.writeFileSync(file, latex, {encoding: "utf8"});
             var expectedLatex = fs.readFileSync(file, "utf8");
             expect(latex).to.be.equal(expectedLatex);
+            done();
+        }));
+    });
+
+    describe("ascii table ", function() {
+        it("with text wrapping", sinon.test(function(done) {
+            var header= {cells: [{content: 'a', colWidth: 10},{content:'b', colWidth: 12, lineWrap: true}]};
+
+            var body = [
+                ['short', 'long but fortunately wrappable text'],
+                ['short', 'unwrapped'],
+            ];
+
+            var ascii = latexTable(body, header, {style: "ascii"});
+            console.log(ascii);
+            var file = __dirname + "/latex/ascii_wrapping.tex";
+            if (reWriteExpected)
+                fs.writeFileSync(file, ascii, {encoding: "utf8"});
+            var expectedLatex = fs.readFileSync(file, "utf8");
+            expect(ascii).to.be.equal(expectedLatex);
             done();
         }));
     });
