@@ -71,11 +71,22 @@ describe("Test main call on a ", function() {
             expect(latex).to.be.equal(expectedLatex);
             done();
         }));
+
+        it("csv table ", sinon.test(function(done) {
+            var latex = latexTable(null, headerSpec, {style: "csv"});
+            var file = __dirname + "/latex/header_only_csv.tex";
+            if (reWriteExpected)
+                fs.writeFileSync(file, latex, {encoding: "utf8"});
+
+            var expectedLatex = fs.readFileSync(file, "utf8");
+            debug(latex);
+            expect(latex).to.be.equal(expectedLatex);
+            done();
+        }));
     });
 
     describe("body-only ", function() {
         it("default style table", sinon.test(function(done) {
-
             var latex = latexTable(simpleBody, null, {style: "default"});
             console.log(latex);
             var file = __dirname + "/latex/body_only_default.tex";
@@ -95,6 +106,18 @@ describe("Test main call on a ", function() {
             expect(latex).to.be.equal(expectedLatex);
             done();
         }));
+
+        it("csv style table", sinon.test(function(done) {
+            var csv = latexTable(simpleBody, null, {style: "csv"});
+            console.log(csv);
+            var file = __dirname + "/latex/body_only_csv.tex";
+            if (reWriteExpected)
+                fs.writeFileSync(file, csv, {encoding: "utf8"});
+            var expected = fs.readFileSync(file, "utf8");
+            expect(csv).to.be.equal(expected);
+            done();
+        }));
+
     });
 
     describe("simple ", function() {
@@ -119,11 +142,21 @@ describe("Test main call on a ", function() {
             done();
         }));
 
+        it("csv style table", sinon.test(function(done) {
+            var csv = latexTable(simpleBody, simpleHeader, {style: "csv"});
+            var file = __dirname + "/latex/simple_csv.tex";
+            if (reWriteExpected)
+                fs.writeFileSync(file, csv, {encoding: "utf8"});
+            var expected = fs.readFileSync(file, "utf8");
+            debug(csv);
+            expect(csv).to.be.equal(expected);
+            done();
+        }));
+
     });
 
     describe("simple table with comments", function() {
         it("default style table", sinon.test(function(done) {
-
             var latex = latexTable(commentedBody, commentedHeader, {style: "default"});
             var file = __dirname + "/latex/simple_commented_default.tex";
             if (reWriteExpected)
@@ -142,6 +175,18 @@ describe("Test main call on a ", function() {
             expect(latex).to.be.equal(expectedLatex);
             done();
         }));
+
+        it("csv style table", sinon.test(function(done) {
+            var csv = latexTable(commentedBody, commentedHeader, {style: "csv"});
+            var file = __dirname + "/latex/simple_commented_csv.tex";
+            if (reWriteExpected)
+                fs.writeFileSync(file, csv, {encoding: "utf8"});
+            var expected = fs.readFileSync(file, "utf8");
+            expect(csv).to.be.equal(expected);
+            debug(csv);
+            done();
+        }));
+
     });
 
     describe("ascii table ", function() {
@@ -163,6 +208,8 @@ describe("Test main call on a ", function() {
             done();
         }));
     });
+
+
 
 
     describe("showcase data table  ", function() {
@@ -272,6 +319,62 @@ describe("Test main call on a ", function() {
             console.log(ascii);
             var expectedAscii = fs.readFileSync(file, "utf8");
             expect(ascii).to.be.equal(expectedAscii);
+            done();
+        }));
+
+        it("with csv style", sinon.test(function(done) {
+
+            var options = {
+                style: "csv",
+                label: "tab:awesomeness",
+                caption: "Comparison of text-editor awesomeness",
+            };
+
+            var header = {
+                comment: "header comment" ,
+                cells:
+                    [
+                        {
+                            content: 'a',
+                            spec: "l",
+                            colWidth: 8,
+                        },
+
+                        {
+                            content: 'awesomeness',
+                            spec: "l",
+                            decimalScaling: "1",
+                            units: "Gazillions",
+                            formatter: {decimals: 2},
+                        },
+                        {
+                            content: 'awesomeness2',
+                            spec: "l",
+                            decimalScaling: "2",
+                            units: "Gazillions",
+                            formatter: {precision: 3}
+                        },
+                    ]
+            };
+
+            var body = [
+                {
+                    comment: "first line comment",
+                    cells: ['vim', '300', 300]
+                },
+                {
+                    comment: "second line comment",
+                    cells: ['emacs', '10000', 10000]
+                },
+            ];
+
+            var csv = latexTable(body, header, options);
+            var file = __dirname + "/latex/showcase_csv.tex";
+            if (reWriteExpected)
+                fs.writeFileSync(file, csv, {encoding: "utf8"});
+            console.log(csv);
+            var expected = fs.readFileSync(file, "utf8");
+            expect(csv).to.be.equal(expected);
             done();
         }));
     });
