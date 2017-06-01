@@ -17,7 +17,7 @@ var fs = require('fs-extra');
 var latexTable = require('../lib/index');
 
 /* Set this to true to rewrite all the expected latex output */
-var reWriteExpected = true;
+var reWriteExpected = false;
 
 sinon.test = sinonTest.configureTest(sinon);
 
