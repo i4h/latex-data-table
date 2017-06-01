@@ -31,17 +31,25 @@ var header = {
                 units: "Seconds",
                 formatter: {precision: 2}
             },
+            {
+                content: 'Required Space',
+                spec: "r",
+                decimalScaling: "6",
+                units: "Bye",
+                formatter: {exponential: 2}
+            },
+
         ]
 };
 
 var body = [
     {
         comment: "first line comment",
-        cells: ['vim', '15', 0.2]
+        cells: ['vim', '15', 0.2, 1.1e6]
     },
     {
         comment: "second line comment",
-        cells: ['emacs', '10000', 1234]
+        cells: ['emacs', '10000', 1234, 2345e10]
     },
 ];
 
